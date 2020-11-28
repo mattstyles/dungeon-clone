@@ -1,0 +1,16 @@
+
+type User {
+  name: String!
+  password: String!
+  games: [Game] @relation
+}
+
+type Game {
+  name: String!
+  users: [User] @relation
+}
+
+type Query {
+  allGames: [Game!]
+  allUsers: [User!]
+}

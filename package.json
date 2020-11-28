@@ -1,0 +1,18 @@
+{
+  "name": "poc-gql-relay-auth-rooms",
+  "version": "1.0.0",
+  "description": "POC to see how we can play with graphql to authenticate a user and have them join an open game. Joining the open game will grant them an access token which can then be used to access game data and create mutations.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "esm": "^3.2.25",
+    "graphql": "^15.4.0",
+    "graphql-schema-linter": "^1.0.1",
+    "minimist": "^1.2.5"
+  }
+}
