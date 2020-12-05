@@ -13,7 +13,7 @@ const getAppIds = () => {
 const appIds = getAppIds()
 const appIdHeader = 'x-app-id'
 
-exports.useAppId = () => async (ctx, next) => {
+exports.setAppId = () => async (ctx, next) => {
   const appId = ctx.request.header[appIdHeader]
   log('AppID:', appId)
 
@@ -25,8 +25,6 @@ exports.useAppId = () => async (ctx, next) => {
   }
 
   await next()
-
-  console.log('after')
 }
 
 /**
@@ -54,7 +52,7 @@ const checkAuthToken = (token) => {
   return isValid
 }
 
-exports.useIsAuthenticated = () => async (ctx, next) => {
+exports.setAuthenticated = () => async (ctx, next) => {
   const token = getAuthToken(ctx.request.header.authorization)
 
   if (!token) {
@@ -64,4 +62,14 @@ exports.useIsAuthenticated = () => async (ctx, next) => {
 
   ctx.isAuthenticated = checkAuthToken(token)
   await next()
+}
+
+exports.isAuthenticated = () => (ctx, next) => {
+  if (ctx.isAuthenticated) {
+    next()
+    return
+  }
+
+  ctx.body = 'Not allowed.'
+  ctx.status = 401
 }
