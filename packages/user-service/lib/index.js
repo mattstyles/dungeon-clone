@@ -13,7 +13,7 @@ app.use(logger())
 app.use(useGatewayCheck())
 
 app.use((ctx, next) => {
-  ctx.body = 'public response.'
+  ctx.body = { body: 'public response.' }
   ctx.status = 200
 })
 
