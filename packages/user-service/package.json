@@ -1,8 +1,8 @@
 {
-  "name": "gateway",
+  "name": "user-service",
   "version": "1.0.0",
   "private": true,
-  "description": "POC for an api gateway and auth manager",
+  "description": "Dummy public/private microservice",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -11,13 +11,10 @@
   },
   "keywords": [],
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
-    "@koa/cors": "^3.1.0",
     "@koa/router": "^10.0.0",
-    "bent": "^7.3.12",
     "chalk": "^4.1.0",
-    "dotenv": "^8.2.0",
     "koa": "^2.13.0",
     "koa-logger": "^3.2.1"
   },

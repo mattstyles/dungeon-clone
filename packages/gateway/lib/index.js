@@ -4,9 +4,10 @@ const Koa = require('koa')
 const cors = require('@koa/cors')
 const logger = require('koa-logger')
 
+const { bootstrap } = require('@internal/utils')
 const { log } = require('./utils')
 const { setAppId, setAuthenticated } = require('./middleware')
-const { bootstrap } = require('./bootstrap')
+const { cache } = require('./memcache')
 const { notfound, createRouter } = require('./router')
 
 const app = new Koa()
@@ -25,32 +26,8 @@ bootstrap(
     console.error('Error bootstrapping gateway')
     console.error(err)
   },
-  () => {
-    // app.use((ctx, next) => {
-    //   if (ctx.request.path !== '/public') {
-    //     return next()
-    //   }
-    //
-    //   log('Public route')
-    //   ctx.response.body = 'Public response'
-    //   ctx.status = 200
-    // })
-    //
-    // app.use((ctx, next) => {
-    //   if (ctx.request.path !== '/private') {
-    //     return next()
-    //   }
-    //
-    //   log('Private response.', 'Authentication', ctx.isAuthenticated)
-    //   if (!ctx.isAuthenticated) {
-    //     ctx.response.body = 'Not allowed.'
-    //     ctx.status = 401
-    //     return
-    //   }
-    //
-    //   ctx.response.body = 'Private response'
-    //   ctx.status = 200
-    // })
+  (config) => {
+    cache.set('config', config)
 
     const router = createRouter()
     app.use(router.routes())

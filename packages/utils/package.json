@@ -18,5 +18,8 @@
   },
   "devDependencies": {
     "standard": "^16.0.3"
+  },
+  "dependencies": {
+    "dotenv": "^8.2.0"
   }
 }
