@@ -40,6 +40,7 @@
     "@babel/node": "^7.12.6",
     "@babel/preset-env": "^7.12.7",
     "@babel/preset-react": "^7.12.7",
+    "babel-eslint": "^10.1.0",
     "bent": "^7.3.12",
     "dotenv": "^8.2.0",
     "esm": "^3.2.25",
