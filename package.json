@@ -4,15 +4,33 @@
   "description": "POC to see how we can play with graphql to authenticate a user and have them join an open game. Joining the open game will grant them an access token which can then be used to access game data and create mutations.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "script": "babel-node -r dotenv/config"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@babel/cli": "^7.12.8",
+    "@babel/core": "^7.12.9",
+    "@babel/node": "^7.12.6",
+    "@babel/preset-env": "^7.12.7",
+    "@babel/preset-react": "^7.12.7",
+    "bent": "^7.3.12",
+    "dotenv": "^8.2.0",
     "esm": "^3.2.25",
+    "faunadb": "^4.0.0",
     "graphql": "^15.4.0",
     "graphql-schema-linter": "^1.0.1",
-    "minimist": "^1.2.5"
+    "ink": "^3.0.8",
+    "ink-select-input": "^4.2.0",
+    "inquirer": "^7.3.3",
+    "minimist": "^1.2.5",
+    "react": "^17.0.1"
+  },
+  "dependencies": {
+    "chalk": "^4.1.0",
+    "graphql-request": "^3.3.0",
+    "graphql-tag": "^2.11.0"
   }
 }
