@@ -1,0 +1,23 @@
+{
+  "name": "@internal/memcache",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Quick and cheap in-memory cache",
+  "author": "Matt Styles <matt@personalurban.com>",
+  "homepage": "",
+  "license": "MIT",
+  "main": "lib/memcache.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "files": [
+    "lib"
+  ],
+  "scripts": {
+    "test": "tape lib/**/*.test.js"
+  },
+  "devDependencies": {
+    "standard": "^16.0.3",
+    "tape": "^5.0.1"
+  }
+}

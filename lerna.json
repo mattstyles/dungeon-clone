@@ -1,0 +1,18 @@
+{
+  "lerna": "3.22.1",
+  "version": "independent",
+  "npmClient": "yarn",
+  "useWorkspaces": true,
+  "command": {
+    "version": {
+      "message": "publish :metal: %s"
+    },
+    "create": {
+      "publishConfig": {
+        "access": "public"
+      },
+      "license": "MIT",
+      "private": true
+    }
+  }
+}

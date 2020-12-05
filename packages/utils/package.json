@@ -1,0 +1,22 @@
+{
+  "name": "@internal/utils",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Junk utils",
+  "author": "Matt Styles <matt@personalurban.com>",
+  "homepage": "",
+  "license": "MIT",
+  "main": "lib/index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "files": [
+    "lib"
+  ],
+  "scripts": {
+    "test": "echo \"Error: run tests from root\" && exit 1"
+  },
+  "devDependencies": {
+    "standard": "^16.0.3"
+  }
+}
