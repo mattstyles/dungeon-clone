@@ -1,15 +1,18 @@
 
 const Router = require('@koa/router')
+const bodyParser = require('koa-bodyparser')
 const bent = require('bent')
+const chalk = require('chalk')
 
 const { cache } = require('./memcache')
 const { isAuthenticated } = require('./middleware')
+const { log } = require('./utils')
 
 const gatewayId = process.env.GATEWAY_KEY
 
-exports.notfound = () => (ctx) => {
-  ctx.response.body = 'Not found.'
-  ctx.response.status = 404
+exports.notfound = () => async (ctx) => {
+  ctx.body = 'Not found.'
+  ctx.status = 404
 }
 
 exports.createRouter = () => {
@@ -21,7 +24,10 @@ exports.createRouter = () => {
   }
 
   for (const [, service] of Object.entries(config)) {
-    const middleware = []
+    const middleware = [bodyParser]
+
+    log('Adding route', chalk.magenta(service.name))
+    log(JSON.stringify(service, null, '  '))
 
     if (service.private) {
       middleware.push(isAuthenticated)
@@ -35,12 +41,14 @@ exports.createRouter = () => {
       async ctx => {
         try {
           const request = bent(ctx.request.method, service.url)
-          const res = await request(ctx.request.url, null, {
+          const res = await request(ctx.request.url, ctx.request.body, {
             'x-gateway-id': gatewayId,
             ...ctx.request.headers
           })
 
-          ctx.body = await res.json()
+          const body = await res.json()
+
+          ctx.body = body
           ctx.status = res.status
         } catch (err) {
           console.error(err)

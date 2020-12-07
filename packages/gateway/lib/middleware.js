@@ -64,9 +64,9 @@ exports.setAuthenticated = () => async (ctx, next) => {
   await next()
 }
 
-exports.isAuthenticated = () => (ctx, next) => {
+exports.isAuthenticated = () => async (ctx, next) => {
   if (ctx.isAuthenticated) {
-    next()
+    await next()
     return
   }
 

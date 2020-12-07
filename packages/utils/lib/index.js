@@ -37,12 +37,12 @@ const isFromGateway = (headers) => {
 
 exports.isFromGateway = isFromGateway
 
-exports.useGatewayCheck = () => (ctx, next) => {
+exports.useGatewayCheck = () => async (ctx, next) => {
   if (!isFromGateway(ctx.request.header)) {
     ctx.body = 'Not allowed.'
     ctx.status = 401
     return
   }
 
-  next()
+  await next()
 }
