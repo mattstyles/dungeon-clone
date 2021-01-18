@@ -1,16 +1,57 @@
 
+type UserData @embedded {
+  somedata: String!
+}
+
+input UserDataInput {
+  somedata: String
+}
+
 type User {
-  name: String!
-  password: String!
+  name: String! @unique
+  data: UserData
   games: [Game] @relation
 }
 
-type Game {
+input UserInput {
   name: String!
+  password: String!
+  data: UserDataInput
+}
+
+input LoginUserInput {
+  name: String!
+  password: String!
+}
+
+input LogoutUserInput {
+  allTokens: Boolean!
+}
+
+type Auth {
+  token: String!
+  user: User!
+}
+
+type Game {
+  name: String! @unique
   users: [User] @relation
+}
+
+type Token {
+  token: String!
+  expiry: Long!
 }
 
 type Query {
   allGames: [Game!]
   allUsers: [User!]
+  findUserByName(name: String!): User!
+  findGameByName(name: String!): Game!
+}
+
+type Mutation {
+  createUser(data: UserInput): User! @resolver(name: "user_create")
+  loginUser(data: LoginUserInput): Auth! @resolver(name: "user_login")
+  logoutUser(data: LogoutUserInput): Boolean! @resolver(name: "user_logout")
 }
